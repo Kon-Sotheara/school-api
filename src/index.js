@@ -1,8 +1,10 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import bcrypt from 'bcrypt';
 import studentRoutes from './routes/student.routes.js';
 import courseRoutes from './routes/course.routes.js';
 import teacherRoutes from './routes/teacher.routes.js';
+import authorRoutes from './routes/author.routes.js'
 import { serveSwagger, setupSwagger } from './config/swagger.js';
 
 dotenv.config();
@@ -13,6 +15,7 @@ app.use(express.json());
 
 app.use('/docs', serveSwagger, setupSwagger);
 
+app.use('/auth', authorRoutes);
 app.use('/students', studentRoutes);
 app.use('/courses', courseRoutes);
 app.use('/teachers', teacherRoutes);
